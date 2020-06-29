@@ -1,0 +1,18 @@
+@import "./../../../../assets/sass/utils";
+
+:host {
+  display: block;
+}
+
+.logo {
+  text-decoration: none;
+  display: inline-block;
+  font-family: $font2;
+  color: $color_light;
+  display: block;
+  text-align: center;
+
+  &.dark {
+    color: $color_dark4;
+  }
+}

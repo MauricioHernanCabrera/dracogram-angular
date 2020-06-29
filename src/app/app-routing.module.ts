@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-// import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
   {
     path: 'auth',
-    // component: LayoutComponent,
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
 ];

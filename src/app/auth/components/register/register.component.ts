@@ -11,12 +11,12 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   form: FormGroup;
+  loading: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router
-  ) // private authService: AuthService
-  {
+    private router: Router // private authService: AuthService
+  ) {
     this.buildForm();
   }
 
@@ -24,18 +24,24 @@ export class RegisterComponent implements OnInit {
 
   register(event: Event) {
     event.preventDefault();
-    if (this.form.valid) {
-      const value = this.form.value;
-      // this.authService.createUser(value.email, value.password)
-      // .then(() => {
-      //   this.router.navigate(['/auth/login']);
-      // });
-    }
+    this.loading = true;
+    setTimeout(() => {
+      this.loading = false;
+    }, 3000);
+    // if (this.form.valid) {
+    //   const value = this.form.value;
+    //   this.authService.createUser(value.email, value.password)
+    //   .then(() => {
+    //     this.router.navigate(['/auth/login']);
+    //   });
+    // }
   }
 
   private buildForm() {
     this.form = this.formBuilder.group({
-      email: ['', [Validators.required]],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
   }

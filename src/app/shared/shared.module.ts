@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LogoComponent } from './components/logo/logo.component';
 
 // import { ExponentialPipe } from './pipes/exponential/exponential.pipe';
 // import { HighlightDirective } from './directives/highlight/highlight.directive';
@@ -10,11 +11,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 // import { CartComponent } from './components/cart/cart.component';
 // import { MaterialModule } from './../material/material.module';
 
-const modules = [];
-
 @NgModule({
   imports: [CommonModule, RouterModule, ReactiveFormsModule],
-  declarations: [...modules],
-  exports: [...modules],
+  declarations: [LogoComponent],
+  exports: [LogoComponent],
 })
 export class SharedModule {}

@@ -1,0 +1,62 @@
+@import "./../../../../assets/sass/utils";
+
+.card-auth {
+  min-height: 100vh;
+  overflow-x: auto;
+  background-color: $color_grey3;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  @include breakpoint(sm) {
+    align-items: center;
+  }
+
+  .card-auth-container {
+    width: 100%;
+    max-width: 400px;
+
+    .card-auth-box {
+      background-color: $color_light;
+      border-radius: 0;
+      padding: 28px 32px;
+      @include breakpoint(sm) {
+        border-radius: 22px;
+      }
+
+      .card-auth-header {
+        display: flex;
+        justify-content: center;
+
+        .mat-card-header-text {
+          display: none;
+        }
+
+        .card-auth-title {
+          text-align: center;
+          font-size: 20px;
+          font-weight: 400;
+          color: $color_grey6;
+        }
+      }
+      .card-auth-content {
+        margin-bottom: 16px;
+        .card-auth-btn-submit {
+          margin-top: 24px;
+          height: 48px;
+          border-radius: 8px;
+        }
+      }
+    }
+
+    .card-auth-footer {
+      a {
+        text-decoration: none;
+        color: $color_dark2;
+        display: block;
+        padding: 24px 0;
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
+}

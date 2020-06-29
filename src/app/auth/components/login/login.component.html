@@ -1,38 +1,23 @@
 <form [formGroup]="form" (ngSubmit)="login($event)">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Login</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <div class="row">
-        <div class="col-xs">
-          <mat-form-field>
-            <input
-              placeholder="email"
-              formControlName="email"
-              matInput
-              type="email"
-            />
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs">
-          <mat-form-field>
-            <input
-              placeholder="password"
-              formControlName="password"
-              matInput
-              type="password"
-            />
-          </mat-form-field>
-        </div>
-      </div>
-    </mat-card-content>
-    <mat-card-actions>
-      <button [disabled]="form.invalid" mat-raised-button type="submit">
-        Ingresar
-      </button>
-    </mat-card-actions>
-  </mat-card>
+  <app-card-auth
+    title="Ingresá con tu email"
+    [disabled]="form.invalid || loading"
+    [loading]="loading"
+    [btnFooterVisible]="true"
+    btnSubmitName="Ingresar"
+    btnFooterName="¿No tenés cuenta?"
+    btnFooterRouterLink="/auth/register"
+  >
+    <mat-form-field class="w-100">
+      <mat-label>Email</mat-label>
+      <input formControlName="email" matInput type="email" autofocus />
+    </mat-form-field>
+
+    <br />
+
+    <mat-form-field class="w-100">
+      <mat-label>Contraseña</mat-label>
+      <input formControlName="password" matInput type="password" />
+    </mat-form-field>
+  </app-card-auth>
 </form>

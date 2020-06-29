@@ -1,0 +1,46 @@
+$color_dark: #2c333b;
+$color_dark2: #313236;
+$color_dark3: #000000;
+$color_dark4: #313237;
+// $color_dark: #4a4a4a;
+$color_light: #fff;
+
+$color_grey: #f5f5f5;
+$color_grey2: #eee;
+$color_grey3: #f6f8f7;
+$color_grey4: #e7e7e7;
+$color_grey5: #f9f9f9;
+$color_grey6: #858585;
+
+$color_primary: #039be5;
+$color_secondary: #009ee3;
+$color_warning: #f5bd41;
+$color_success: #5ea037;
+
+$font1: "Karla", "Helvetica Neue", sans-serif;
+$font2: "Lobster";
+
+$grid-bp: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+);
+
+/*
+  level 1 = 1000
+  level 2 = 100
+  level 3 = 10
+*/
+
+$z-index: ();
+
+@mixin breakpoint($size) {
+  @media screen and (min-width: map-get($grid-bp, $size)) {
+    @content;
+  }
+}
+
+@mixin z-index($key) {
+  z-index: map-get($z-index, $key);
+}
