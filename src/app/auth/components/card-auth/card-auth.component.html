@@ -4,7 +4,15 @@
       <app-logo [dark]="true"></app-logo>
 
       <div class="card-auth-header">
-        <h1 class="card-auth-title">{{ title }}</h1>
+        <h1 class="card-auth-title">{{ subtitle }}</h1>
+
+        <div
+          class="card-auth-alert"
+          *ngIf="!!alert?.type"
+          [class]="alert?.type"
+        >
+          {{ alert.message }}
+        </div>
       </div>
 
       <div class="card-auth-content">

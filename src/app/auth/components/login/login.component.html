@@ -1,9 +1,10 @@
 <form [formGroup]="form" (ngSubmit)="login($event)">
   <app-card-auth
-    title="Ingresá con tu email"
+    subtitle="Ingresá con tu email"
     [disabled]="form.invalid || loading"
     [loading]="loading"
     [btnFooterVisible]="true"
+    [alert]="alert"
     btnSubmitName="Ingresar"
     btnFooterName="¿No tenés cuenta?"
     btnFooterRouterLink="/auth/register"

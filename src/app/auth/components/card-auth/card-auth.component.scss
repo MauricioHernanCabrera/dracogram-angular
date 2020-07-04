@@ -18,7 +18,7 @@
     .card-auth-box {
       background-color: $color_light;
       border-radius: 0;
-      padding: 28px 32px;
+      padding: 48px 32px 24px 32px;
       @include breakpoint(sm) {
         border-radius: 22px;
       }
@@ -26,6 +26,7 @@
       .card-auth-header {
         display: flex;
         justify-content: center;
+        flex-direction: column;
 
         .mat-card-header-text {
           display: none;
@@ -36,6 +37,27 @@
           font-size: 20px;
           font-weight: 400;
           color: $color_grey6;
+          margin-bottom: 6px;
+        }
+
+        .card-auth-alert {
+          font-size: 12px;
+          color: $color_light;
+          background-color: $color_error;
+          padding: 12px 16px;
+          border-radius: 3px;
+          margin-bottom: 16px;
+          text-align: center;
+
+          &.error {
+            background-color: $color_error;
+          }
+          &.success {
+            background-color: $color_success;
+          }
+          &.warning {
+            background-color: $color_warning;
+          }
         }
       }
       .card-auth-content {
@@ -44,6 +66,7 @@
           margin-top: 24px;
           height: 48px;
           border-radius: 8px;
+          text-transform: uppercase;
         }
       }
     }
