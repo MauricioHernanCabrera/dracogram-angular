@@ -4,4 +4,5 @@ export interface User {
   lastName: number;
   email: string;
   password: string;
+  gravatarUrl?: string;
 }

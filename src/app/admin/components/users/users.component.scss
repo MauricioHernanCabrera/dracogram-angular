@@ -1,0 +1,58 @@
+@import "./../../../../assets/sass/utils";
+
+:host {
+  .content {
+    margin: 16px;
+
+    .filter {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 12px;
+    }
+
+    .user-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 12px;
+
+      .user-item {
+        background-color: $color_light;
+        box-shadow: 0 0.07em 0.125em 0 rgba(0, 0, 0, 0.15);
+        transition: 0.1s;
+        padding: 8px 16px;
+        border-bottom: 0.0625em solid #eee;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        min-height: 58px;
+
+        .user-image {
+          width: 40px;
+          margin-right: 12px;
+          img {
+            display: block;
+            width: 100%;
+            border-radius: 50%;
+            box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+              0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+              0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+          }
+        }
+
+        .user-content {
+          flex: 1 1 auto;
+          .user-fullname {
+            font-size: 14px;
+            line-height: 18px;
+            font-weight: 700;
+          }
+          .user-email {
+            font-size: 10px;
+            line-height: 11px;
+          }
+        }
+      }
+    }
+  }
+}

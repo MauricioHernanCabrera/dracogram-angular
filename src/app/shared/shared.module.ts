@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LogoComponent } from './components/logo/logo.component';
+import { SpacerComponent } from './components/spacer/spacer.component';
 
 // import { ExponentialPipe } from './pipes/exponential/exponential.pipe';
 // import { HighlightDirective } from './directives/highlight/highlight.directive';
@@ -13,7 +14,7 @@ import { LogoComponent } from './components/logo/logo.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule, ReactiveFormsModule],
-  declarations: [LogoComponent],
-  exports: [LogoComponent],
+  declarations: [LogoComponent, SpacerComponent],
+  exports: [LogoComponent, SpacerComponent],
 })
 export class SharedModule {}
