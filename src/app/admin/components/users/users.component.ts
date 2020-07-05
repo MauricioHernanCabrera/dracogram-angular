@@ -11,6 +11,7 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import { FormUserComponent } from '../form-user/form-user.component';
+import { Alert } from 'src/app/core/models/alert.model';
 
 @Component({
   selector: 'app-users',
@@ -20,6 +21,7 @@ import { FormUserComponent } from '../form-user/form-user.component';
 export class UsersComponent implements OnInit {
   users: Array<User> = [];
   search: string = '';
+  alert: Alert;
 
   form: FormGroup;
 
@@ -64,13 +66,27 @@ export class UsersComponent implements OnInit {
       data: { form: this.form, isCreated: true },
     });
 
-    dialogRef.afterClosed().subscribe((userData) => {
+    dialogRef.afterClosed().subscribe((userData: User) => {
       if (userData === null) return;
-      this.users.push({
-        ...userData,
-        id: Date.now().toString(),
-        gravatarUrl: this.makeGravatarUrl(userData.email),
-      });
+
+      this.userService.createOne(userData).subscribe(
+        (response: Response) => {
+          this.users.push({
+            ...response.data,
+            gravatarUrl: this.makeGravatarUrl(response.data.email),
+          });
+          this.alert = {
+            message: response.message,
+            type: 'success',
+          };
+        },
+        (error) => {
+          this.alert = {
+            message: error.message,
+            type: 'error',
+          };
+        }
+      );
     });
   }
 
@@ -92,11 +108,24 @@ export class UsersComponent implements OnInit {
       const indexUser = findIndex(this.users, ['id', user.id]);
       if (indexUser === -1) return;
 
-      this.users.splice(indexUser, 1, {
-        ...userData,
-        id: user.id,
-        gravatarUrl: this.makeGravatarUrl(userData.email),
-      });
+      this.userService.updateOne(user.id, userData).subscribe(
+        (response: Response) => {
+          this.users.splice(indexUser, 1, {
+            ...response.data,
+            gravatarUrl: this.makeGravatarUrl(response.data.email),
+          });
+          this.alert = {
+            message: response.message,
+            type: 'success',
+          };
+        },
+        (error) => {
+          this.alert = {
+            message: error.message,
+            type: 'error',
+          };
+        }
+      );
     });
   }
 }
