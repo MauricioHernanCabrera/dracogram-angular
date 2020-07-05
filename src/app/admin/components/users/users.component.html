@@ -8,6 +8,7 @@
   <button
     mat-icon-button
     class="example-icon"
+    (click)="openFormCreate()"
     aria-label="Example icon-button with share icon"
   >
     <mat-icon>add</mat-icon>
@@ -52,7 +53,9 @@
         </button>
 
         <mat-menu #menu="matMenu">
-          <button mat-menu-item>Editar usuario</button>
+          <button mat-menu-item (click)="openFormUpdate(user)">
+            Editar usuario
+          </button>
           <button mat-menu-item>Eliminar usuario</button>
         </mat-menu>
       </div>

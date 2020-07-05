@@ -1,7 +1,5 @@
 <form [formGroup]="data.form" (ngSubmit)="save($event)">
-  <h1 mat-dialog-title>
-    {{ data.isCreated ? "Crear usuario" : "Actualizar usuario" }}
-  </h1>
+  <h1 mat-dialog-title>Crear usuario</h1>
 
   <div mat-dialog-content>
     <mat-form-field class="w-100">
@@ -23,14 +21,14 @@
 
     <br />
 
-    <mat-form-field class="w-100" *ngIf="data.isCreated">
+    <mat-form-field class="w-100">
       <mat-label>Contraseña *</mat-label>
       <input formControlName="password" matInput type="password" />
     </mat-form-field>
   </div>
 
   <div mat-dialog-actions>
-    <button mat-button (click)="close()" type="reset">Cerrar</button>
+    <button mat-button (click)="close()">Cerrar</button>
 
     <app-spacer></app-spacer>
 
@@ -40,7 +38,7 @@
       type="submit"
       color="primary"
     >
-      {{ data.isCreated ? "Crear" : "Actualizar" }}
+      Crear
     </button>
   </div>
 </form>
