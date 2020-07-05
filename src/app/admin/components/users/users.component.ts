@@ -3,13 +3,9 @@ import { UserService } from './../../../core/services/user.service';
 import { Response } from './../../../core/models/response.model';
 import { User } from 'src/app/core/models/user.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { findIndex } from 'lodash';
-import CryptoJS from 'crypto-js';
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
+import { findIndex } from 'lodash-es';
+import * as cryptoJS from 'crypto-js';
+import { MatDialog } from '@angular/material/dialog';
 import { FormUserComponent } from '../form-user/form-user.component';
 import { Alert } from 'src/app/core/models/alert.model';
 
@@ -31,13 +27,16 @@ export class UsersComponent implements OnInit {
     public dialog: MatDialog
   ) {}
 
-  ngOnInit(): void {
-    this.userService.getAll().subscribe((response: Response) => {
-      this.users = response.data.map((user) => ({
-        ...user,
-        gravatarUrl: this.makeGravatarUrl(user.email),
-      }));
-    });
+  ngOnInit() {
+    this.userService.getAll().subscribe(
+      (response: Response) => {
+        this.users = response.data.map((user) => ({
+          ...user,
+          gravatarUrl: this.makeGravatarUrl(user.email),
+        }));
+      },
+      (error) => console.log('error', error)
+    );
   }
 
   get usersFiltered() {
@@ -48,7 +47,7 @@ export class UsersComponent implements OnInit {
   }
 
   makeGravatarUrl(email) {
-    return `https://www.gravatar.com/avatar/${CryptoJS.MD5(
+    return `https://www.gravatar.com/avatar/${cryptoJS.MD5(
       email.toLowerCase()
     )}`;
   }

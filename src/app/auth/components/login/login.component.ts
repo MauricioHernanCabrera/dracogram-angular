@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { Response } from './../../../core/models/response.model';
 import { AuthService } from './../../../core/services/auth.service';
 import { finalize } from 'rxjs/operators';
 import { Alert } from './../../../core/models/alert.model';
@@ -42,15 +42,15 @@ export class LoginComponent implements OnInit {
         })
       )
       .subscribe(
-        (response) => {
-          this.router.navigate(['/']);
+        (response: Response) => {
+          this.authService.setToken(response.data.token);
+          this.router.navigate(['/admin/users']);
           this.alert = {
             message: 'Usuario logueado',
             type: 'success',
           };
         },
         (error) => {
-          console.log(error);
           this.alert = {
             message: error.message,
             type: 'error',

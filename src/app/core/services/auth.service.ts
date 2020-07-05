@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+// import { JwtHelperService } from '@auth0/angular-jwt';
+
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { environment } from './../../../environments/environment';
@@ -41,21 +43,33 @@ export class AuthService {
       .pipe(catchError(this.handleError));
   }
 
-  verify(token: string) {
-    const config = {
-      headers: {
-        Authorizattion: `Bearer ${token}`,
-      },
-    };
+  verify() {
+    // const config = {
+    //   headers: {
+    //     Authorizattion: `Bearer ${token}`,
+    //   },
+    // };
 
-    return this.http.get(`${environment.baseUrl}/auth/verify`, config);
+    return this.http
+      .get(`${environment.baseUrl}/auth/verify`)
+      .pipe(catchError(this.handleError));
   }
 
   setToken(token: string) {
-    this.cookieService.set('token', token);
+    const myDate = new Date();
+    const expires = new Date(myDate.setDate(myDate.getDate() + 30));
+
+    this.cookieService.set('token', token, expires, '/');
   }
 
   getToken() {
     return this.cookieService.get('token');
+  }
+
+  isAuthenticated(): boolean {
+    return false;
+    // const token = this.getToken();
+    // console.log('isAuthenticated', this.jwtHelperService.isTokenExpired(token));
+    // return !this.jwtHelperService.isTokenExpired(token);
   }
 }
