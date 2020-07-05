@@ -90,6 +90,22 @@ export class UsersComponent implements OnInit {
     });
   }
 
+  deleteOne(id: string) {
+    this.userService.deleteOne(id).subscribe(
+      (response) => {
+        const indexUser = findIndex(this.users, ['id', id]);
+        if (indexUser === -1) return;
+        this.users.splice(indexUser, 1);
+      },
+      (error) => {
+        this.alert = {
+          message: error.message,
+          type: 'error',
+        };
+      }
+    );
+  }
+
   openFormUpdate(user: User): void {
     this.form = this.formBuilder.group({
       firstName: [user.firstName, [Validators.required]],

@@ -56,7 +56,9 @@
           <button mat-menu-item (click)="openFormUpdate(user)">
             Editar usuario
           </button>
-          <button mat-menu-item>Eliminar usuario</button>
+          <button mat-menu-item (click)="deleteOne(user.id)">
+            Eliminar usuario
+          </button>
         </mat-menu>
       </div>
     </ng-container>
